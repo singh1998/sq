@@ -9,8 +9,5 @@
         <module name="Bussimulator" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Bussimulator" target="9" />
-    </bytecodeTargetLevel>
   </component>
 </project>

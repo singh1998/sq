@@ -33,19 +33,9 @@ public class Bus{
 	}
 	
 	public boolean halteBereikt(){
-		halteNummer+=richting;
-		bijHalte=true;
-		if ((halteNummer>=lijn.getLengte()-1) || (halteNummer == 0)) {
-			System.out.printf("Bus %s heeft eindpunt (halte %s, richting %d) bereikt.%n", 
-					lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));
-			return true;
-		}
-		else {
-			System.out.printf("Bus %s heeft halte %s, richting %d bereikt.%n", 
-					lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));		
-			naarVolgendeHalte();
-		}		
-		return false;
+
+		return(halteNummer>=lijn.getLengte()-1) || (halteNummer == 0);
+
 	}
 	
 	public void start() {
@@ -64,7 +54,18 @@ public class Bus{
 		else {
 			totVolgendeHalte--;
 			if (totVolgendeHalte==0){
+				halteNummer+=richting;
+				bijHalte=true;
 				eindpuntBereikt=halteBereikt();
+				if(eindpuntBereikt){
+					System.out.printf("Bus %s heeft eindpunt (halte %s, richting %d) bereikt.%n",
+							lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));
+				}
+				else{
+					System.out.printf("Bus %s heeft halte %s, richting %d bereikt.%n",
+							lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));
+					naarVolgendeHalte();
+				}
 			}
 		}
 		return eindpuntBereikt;
