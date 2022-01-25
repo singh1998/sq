@@ -50,8 +50,10 @@ public class Runner {
 			bus.sendETAs(nu);
 		}				
 	}
-	
-	public static int initBussen(){
+	public static void addBussen(){
+
+	}
+	public static void initBussen(){
 		Bus bus1=new Bus(Lijnen.LIJN1, Bedrijven.ARRIVA, 1);
 		Bus bus2=new Bus(Lijnen.LIJN2, Bedrijven.ARRIVA, 1);
 		Bus bus3=new Bus(Lijnen.LIJN3, Bedrijven.ARRIVA, 1);
@@ -65,13 +67,13 @@ public class Runner {
 		addBus(3, bus1);
 		addBus(5, bus2);
 		addBus(4, bus3);
-		addBus(6, bus4);	
+		addBus(6, bus4);
 		addBus(3, bus5);
 		addBus(5, bus6);
-		addBus(4, bus7); 
-		addBus(6, bus8);	
-		addBus(12, bus9); 
-		addBus(10, bus10);	
+		addBus(4, bus7);
+		addBus(6, bus8);
+		addBus(12, bus9);
+		addBus(10, bus10);
 		Bus bus11=new Bus(Lijnen.LIJN1, Bedrijven.ARRIVA, -1);
 		Bus bus12=new Bus(Lijnen.LIJN2, Bedrijven.ARRIVA, -1);
 		Bus bus13=new Bus(Lijnen.LIJN3, Bedrijven.ARRIVA, -1);
@@ -85,13 +87,16 @@ public class Runner {
 		addBus(3, bus11);
 		addBus(5, bus12);
 		addBus(4, bus13);
-		addBus(6, bus14);	
+		addBus(6, bus14);
 		addBus(3, bus15);
 		addBus(5, bus16);
-		addBus(4, bus17); 
-		addBus(6, bus18);	
-		addBus(12, bus19); 
-		addBus(10, bus20);	
+		addBus(4, bus17);
+		addBus(6, bus18);
+		addBus(12, bus19);
+		addBus(10, bus20);
+
+	}
+	public static int getNextStartingTime(){
 		return Collections.min(busStart.keySet());
 	}
 	
@@ -100,7 +105,8 @@ public class Runner {
 		int counter=0;
 		TijdFuncties tijdFuncties = new TijdFuncties();
 		tijdFuncties.initSimulatorTijden(interval,syncInterval);
-		int volgende = initBussen();
+		initBussen();
+		int volgende = getNextStartingTime();
 		while ((volgende>=0) || !actieveBussen.isEmpty()) {
 			counter=tijdFuncties.getCounter();
 			tijd=tijdFuncties.getTijdCounter();
