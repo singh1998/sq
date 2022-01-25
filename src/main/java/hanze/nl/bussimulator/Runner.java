@@ -33,11 +33,12 @@ public class Runner {
 	
 	public static void moveBussen(int nu){
 		Iterator<Bus> itr = actieveBussen.iterator();
+		BusTransmitter busTransmitter = new BusTransmitter();
 		while (itr.hasNext()) {
 			Bus bus = itr.next();
 			boolean eindpuntBereikt = bus.move();
 			if (eindpuntBereikt) {
-				bus.sendLastETA(nu);
+				busTransmitter.sendLastETA(bus, nu);
 				itr.remove();
 			}
 		}		
@@ -45,9 +46,10 @@ public class Runner {
 
 	public static void sendETAs(int nu){
 		Iterator<Bus> itr = actieveBussen.iterator();
+		BusTransmitter busTransmitter = new BusTransmitter();
 		while (itr.hasNext()) {
 			Bus bus = itr.next();
-			bus.sendETAs(nu);
+			busTransmitter.sendETAs(bus, nu);
 		}				
 	}
 	public static void addBussen(){
